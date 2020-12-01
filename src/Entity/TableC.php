@@ -57,4 +57,15 @@ class TableC
      * @ORM\Column(type="integer", name="BFK2")
      */
     public $bfk2;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TableB::class, inversedBy="tableC")
+     * @ORM\JoinColumns(
+     *     @ORM\JoinColumn(name="BFK1", referencedColumnName="BPK1"),
+     *     @ORM\JoinColumn(name="BFK2", referencedColumnName="BPK2"),
+     *     @ORM\JoinColumn(name="AFK1", referencedColumnName="AFK1"),
+     *     @ORM\JoinColumn(name="AFK2", referencedColumnName="AFK2"),
+     * )
+     */
+    public $tableB;
 }
