@@ -1,7 +1,9 @@
 App\Entity\TableC:
   TableC{1..100}:
     cpk1: <numberBetween()>
-    afk1: <numberBetween()>
-    afk2: <numberBetween()>
-    bfk1: <numberBetween()>
-    bfk2: <numberBetween()>
+    bfk1: '<current()>->tableB->bfk1'
+    bfk2: '<current()>->tableB->bfk2'
+    afk1: '<current()>->tableB->afk1'
+    afk2: '<current()>->tableB->afk2'
+    tableB: '@TableB<current()>'
+    tableA: '@TableA<current()>'
