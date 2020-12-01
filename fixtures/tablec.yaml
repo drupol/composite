@@ -1,7 +1,16 @@
 App\Entity\TableC:
   TableC{1..100}:
     cpk1: <numberBetween()>
-    afk1: <numberBetween()>
-    afk2: <numberBetween()>
-    bfk1: <numberBetween()>
-    bfk2: <numberBetween()>
+    bfk1: '<current()>->tableB->bfk1'
+    bfk2: '<current()>->tableB->bfk2'
+    # For afk1 and afk2, we should be able to use:
+    # '<current()>->tableB->afk1'
+    # without creating the field $tableA in Table C, because those fields
+    # are existing in Table B through a relation. But it's not.
+    # In order to get it working, I added the field $tableA in Table C
+    # and it seems to work. I don't like at all that solution, I'm looking
+    # for an alternative.
+    afk1: '<current()>->tableB->afk1'
+    afk2: '<current()>->tableB->afk2'
+    tableB: '@TableB<current()>'
+    tableA: '@TableA<current()>'

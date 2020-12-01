@@ -68,4 +68,13 @@ class TableC
      * )
      */
     public $tableB;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TableA::class)
+     * @ORM\JoinColumns(
+     *     @ORM\JoinColumn(name="AFK1", referencedColumnName="APK1"),
+     *     @ORM\JoinColumn(name="AFK2", referencedColumnName="APK2"),
+     * )
+     */
+    public $tableA;
 }
