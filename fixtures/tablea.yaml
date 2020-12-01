@@ -1,0 +1,4 @@
+App\Entity\TableA:
+  TableA{1..100}:
+    apk1: <numberBetween()>
+    apk2: <numberBetween()>

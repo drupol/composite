@@ -1,0 +1,7 @@
+App\Entity\TableC:
+  TableC{1..100}:
+    cpk1: <numberBetween()>
+    afk1: <numberBetween()>
+    afk2: <numberBetween()>
+    bfk1: <numberBetween()>
+    bfk2: <numberBetween()>
