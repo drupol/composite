@@ -7,6 +7,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\TableA;
 use App\Repository\TableBRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -60,4 +61,42 @@ class TableB
      * )
      */
     public $tableA;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TableC::class, mappedBy="tableB")
+     */
+    private $tableC;
+
+    public function __construct() {
+      $this->tableC = new ArrayCollection();
+    }
+
+    public function addTableC(TableC $tableC): self
+    {
+      if (!$this->tableC->contains($tableC)) {
+        $this->tableC[] = $tableC;
+        $tableC->setTableB($this);
+      }
+
+      return $this;
+    }
+
+    /**
+     * @return Collection|TableC[]
+     */
+    public function getTableC(): Collection
+    {
+      return $this->tableC;
+    }
+
+    public function removeTableC(TableC $tableC): self
+    {
+      if ($this->tableC->removeElement($tableC)) {
+        if ($tableC->getTableB() === $this) {
+          $tableC->setTableB(null);
+        }
+      }
+
+      return $this;
+    }
 }
