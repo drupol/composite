@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\TableB;
 use App\Repository\TableARepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,4 +38,42 @@ class TableA
      * @ORM\Column(type="integer", name="APK2")
      */
     public $apk2;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TableB::class, mappedBy="tableA")
+     */
+    private $tableB;
+
+    public function __construct() {
+      $this->tableB = new ArrayCollection();
+    }
+
+    public function addTableB(TableB $tableB): self
+    {
+      if (!$this->tableB->contains($tableB)) {
+        $this->tableB[] = $tableB;
+        $tableB->setTableA($this);
+      }
+
+      return $this;
+    }
+
+    /**
+     * @return Collection|TableB[]
+     */
+    public function getTableB(): Collection
+    {
+      return $this->tableB;
+    }
+
+    public function removeTableB(TableB $tableB): self
+    {
+      if ($this->tableB->removeElement($tableB)) {
+        if ($tableB->getTableA() === $this) {
+          $tableB->setTableA(null);
+        }
+      }
+
+      return $this;
+    }
 }
