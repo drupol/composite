@@ -1,0 +1,6 @@
+App\Entity\TableC:
+  TableC{1..100}:
+    cpk1: C-<username()>
+    field1: C-<name()>
+    field2: C-<name()>
+    tableB: '@TableB<current()>'
