@@ -2,5 +2,6 @@ App\Entity\TableB:
   TableB{1..100}:
     bpk1: <numberBetween()>
     bpk2: <numberBetween()>
-    afk1: <numberBetween()>
-    afk2: <numberBetween()>
+    afk1: '<current()>->tableA->apk1'
+    afk2: '<current()>->tableA->apk2'
+    tableA: '@TableA<current()>'
