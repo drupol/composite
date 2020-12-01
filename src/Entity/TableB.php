@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\TableA;
 use App\Repository\TableBRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -50,4 +51,13 @@ class TableB
      * @ORM\Column(type="integer", name="AFK2")
      */
     public $afk2;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TableA::class, inversedBy="tableB")
+     * @ORM\JoinColumns(
+     *     @ORM\JoinColumn(name="AFK1", referencedColumnName="APK1"),
+     *     @ORM\JoinColumn(name="AFK2", referencedColumnName="APK2")
+     * )
+     */
+    public $tableA;
 }
