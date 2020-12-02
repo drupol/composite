@@ -1,6 +1,6 @@
 App\Entity\TableC:
   TableC{1..100}:
-    cpk1: <numberBetween()>
+    cpk1: C1-<username()>
     bfk1: '<current()>->tableB->bfk1'
     bfk2: '<current()>->tableB->bfk2'
     # For afk1 and afk2, we should be able to use:
@@ -13,4 +13,3 @@ App\Entity\TableC:
     afk1: '<current()>->tableB->afk1'
     afk2: '<current()>->tableB->afk2'
     tableB: '@TableB<current()>'
-    tableA: '@TableA<current()>'

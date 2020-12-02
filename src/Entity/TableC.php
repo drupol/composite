@@ -30,31 +30,31 @@ class TableC
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="CPK1")
+     * @ORM\Column(type="string", name="CPK1")
      */
     public $cpk1;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="AFK1")
+     * @ORM\Column(type="string", name="AFK1")
      */
     public $afk1;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="AFK2")
+     * @ORM\Column(type="string", name="AFK2")
      */
     public $afk2;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="BFK1")
+     * @ORM\Column(type="string", name="BFK1")
      */
     public $bfk1;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="BFK2")
+     * @ORM\Column(type="string", name="BFK2")
      */
     public $bfk2;
 
@@ -68,13 +68,4 @@ class TableC
      * )
      */
     public $tableB;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=TableA::class)
-     * @ORM\JoinColumns(
-     *     @ORM\JoinColumn(name="AFK1", referencedColumnName="APK1"),
-     *     @ORM\JoinColumn(name="AFK2", referencedColumnName="APK2"),
-     * )
-     */
-    public $tableA;
 }

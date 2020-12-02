@@ -29,13 +29,13 @@ class TableA
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="APK1")
+     * @ORM\Column(type="string", name="APK1")
      */
     public $apk1;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="APK2")
+     * @ORM\Column(type="string", name="APK2")
      */
     public $apk2;
 
