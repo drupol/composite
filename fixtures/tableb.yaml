@@ -1,6 +1,5 @@
 App\Entity\TableB:
   TableB{1..100}:
-    bpk1: <numberBetween()>
-    bpk2: <numberBetween()>
-    afk1: <numberBetween()>
-    afk2: <numberBetween()>
+    bpk1: B-<username()>
+    bpk2: B-<username()>
+    tableA: '@TableA<current()>'

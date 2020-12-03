@@ -31,11 +31,31 @@ class TableB
 
     /**
      * @ORM\Id
+     * @ORM\Column(type="string", name="AFK1")
+     */
+    public $afk1;
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="string", name="AFK2")
+     */
+    public $afk2;
+
+    /**
      * @ORM\ManyToOne(targetEntity=TableA::class, inversedBy="tableB")
      * @ORM\JoinColumns(
      *     @ORM\JoinColumn(name="AFK1", referencedColumnName="APK1"),
      *     @ORM\JoinColumn(name="AFK2", referencedColumnName="APK2")
      * )
      */
-    public $tableA;
+    private $tableA;
+
+    public function setTableA(TableA $tableA)
+    {
+      $this->afk1 = $tableA->apk1;
+      $this->afk2 = $tableA->apk2;
+      $this->tableA = $tableA;
+
+      return $this;
+    }
 }
