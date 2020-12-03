@@ -11,7 +11,18 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource
  * @ORM\Table(
- *     name="TABLE_C"
+ *     name="TEST_TABLE_C",
+ *     indexes={
+ *         @ORM\Index(
+ *             columns={
+ *                 "CPK1",
+ *                 "AFK1",
+ *                 "AFK2",
+ *                 "BFK1",
+ *                 "BFK2"
+ *             }
+ *         )
+ *     }
  * )
  * @ORM\Entity(repositoryClass=TableCRepository::class)
  */
@@ -58,7 +69,7 @@ class TableC
      */
     private $tableB;
 
-    public function setTableB(TableB $tableB)
+    public function setTableB(TableB $tableB): self
     {
       $this->tableB = $tableB;
       $this->afk1 = $tableB->afk1;
@@ -67,5 +78,10 @@ class TableC
       $this->bfk2 = $tableB->bpk2;
 
       return $this;
+    }
+
+    public function getTableB(): TableB
+    {
+      return $this->tableB;
     }
 }
