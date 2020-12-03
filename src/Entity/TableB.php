@@ -11,17 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource
  * @ORM\Table(
- *     name="TABLE_B",
- *     indexes={
- *         @ORM\Index(
- *             columns={
- *                 "BPK1",
- *                 "BPK2",
- *                 "AFK1",
- *                 "AFK2"
- *             }
- *         )
- *     }
+ *     name="TABLE_B"
  * )
  * @ORM\Entity(repositoryClass=TableBRepository::class)
  */
@@ -29,25 +19,23 @@ class TableB
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="BPK1")
+     * @ORM\Column(type="string", name="BPK1")
      */
     public $bpk1;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="BPK2")
+     * @ORM\Column(type="string", name="BPK2")
      */
     public $bpk2;
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", name="AFK1")
+     * @ORM\ManyToOne(targetEntity=TableA::class, inversedBy="tableB")
+     * @ORM\JoinColumns(
+     *     @ORM\JoinColumn(name="AFK1", referencedColumnName="APK1"),
+     *     @ORM\JoinColumn(name="AFK2", referencedColumnName="APK2")
+     * )
      */
-    public $afk1;
-
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer", name="AFK2")
-     */
-    public $afk2;
+    public $tableA;
 }
