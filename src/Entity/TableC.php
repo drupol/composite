@@ -9,7 +9,13 @@ use App\Repository\TableCRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource
+ * @ApiResource(
+ *     itemOperations={
+ *         "get": {
+ *             "requirements": {"id": ".+"}
+ *         }
+ *     }
+ * )
  * @ORM\Table(
  *     name="TEST_TABLE_C",
  *     indexes={
