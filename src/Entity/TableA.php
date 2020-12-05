@@ -68,7 +68,7 @@ class TableA
     {
         if (!$this->tableB->contains($tableB)) {
             $this->tableB[] = $tableB;
-            $tableB->setTableA($this);
+            $tableB->tableA = $this;
         }
 
         return $this;

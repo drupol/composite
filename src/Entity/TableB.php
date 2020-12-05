@@ -48,18 +48,6 @@ class TableB
     public $bpk2;
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="string", name="AFK1")
-     */
-    public $afk1;
-
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", name="AFK2")
-     */
-    public $afk2;
-
-    /**
      * @ORM\Column(type="string", name="FIELD1")
      */
     public $field1;
@@ -70,27 +58,14 @@ class TableB
     public $field2;
 
     /**
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity=TableA::class, inversedBy="tableB")
      * @ORM\JoinColumns(
      *     @ORM\JoinColumn(name="AFK1", referencedColumnName="APK1"),
      *     @ORM\JoinColumn(name="AFK2", referencedColumnName="APK2")
      * )
      */
-    private $tableA;
-
-    public function setTableA(TableA $tableA): self
-    {
-      $this->afk1 = $tableA->apk1;
-      $this->afk2 = $tableA->apk2;
-      $this->tableA = $tableA;
-
-      return $this;
-    }
-
-    public function getTableA(): TableA
-    {
-        return $this->tableA;
-    }
+    public $tableA;
 
     /**
      * @ORM\OneToMany(targetEntity=TableC::class, mappedBy="tableB")
@@ -105,7 +80,7 @@ class TableB
     {
         if (!$this->tableC->contains($tableC)) {
             $this->tableC[] = $tableC;
-            $tableC->setTableB($this);
+            $tableC->tableB = $this;
         }
 
         return $this;
